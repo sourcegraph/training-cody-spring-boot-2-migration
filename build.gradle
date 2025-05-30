@@ -2,15 +2,15 @@ import org.gradle.api.JavaVersion
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.18'
-    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'org.springframework.boot' version '3.0.13'
+    id 'io.spring.dependency-management' version '1.1.4'
 }
 
 group = 'com.sourcegraph.demo'
 version = '1.0-SNAPSHOT'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 repositories {
@@ -23,6 +23,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'com.h2database:h2'
+    
+    runtimeOnly 'org.springframework.boot:spring-boot-properties-migrator'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation platform('org.junit:junit-bom:5.10.0')
