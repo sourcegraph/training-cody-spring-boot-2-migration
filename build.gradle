@@ -1,24 +1,25 @@
 import org.gradle.api.JavaVersion
-
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.18'
-    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    id 'org.springframework.boot' version '3.3.13'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id "org.openrewrite.rewrite" version "7.9.0"
 }
-
 group = 'com.sourcegraph.demo'
 version = '1.0-SNAPSHOT'
-
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = JavaVersion.VERSION_17
 }
 
+rewrite {
+  activeRecipe("org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_3")
+  setExportDatatables(true)
+}
 repositories {
     mavenCentral()
 }
-
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
+  implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -27,6 +28,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+  rewrite("org.openrewrite.recipe:rewrite-spring:6.9.0")
 }
 test {
     useJUnitPlatform()
