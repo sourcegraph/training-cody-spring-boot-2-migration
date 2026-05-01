@@ -1,2 +1,2 @@
 [tools]
-java = "adoptopenjdk-jre-11.0.26+4"
+java = "adoptopenjdk-jre-11.0.31+11"
